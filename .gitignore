@@ -1,2 +1,5 @@
 .sass-cache/
 *.css.map
+*_*/
+codekit.config
+*.DS_Store
