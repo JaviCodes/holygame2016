@@ -2,111 +2,47 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>XMAS FIREWORKS</title>
-	<style type="text/css">
-		html, body, * {
-			padding: 0;
-			margin: 0;
-		}
-		#container {
-			width: 100%;
-			height: 100vh;
-			margin: 0px auto;
-			background: -webkit-linear-gradient(#401d61, #663398); /* For Safari 5.1 to 6.0 */
-	    background: -o-linear-gradient(#401d61, #663398); /* For Opera 11.1 to 12.0 */
-	    background: -moz-linear-gradient(#401d61, #663398); /* For Firefox 3.6 to 15 */
-	    background: linear-gradient(#401d61, #663398); /* Standard syntax */
-		}
-		#skyline {
-			position: absolute;
-			background-image: url("img/skyline.png");
-			background-size: auto 300px;
-			background-position: center bottom;
-			height: 300px;
-			width: 100%;
-			bottom: -20px;
-		}
-		.fw_template {
-			padding: 20px;
-			cursor: pointer;
-			bottom: 0px;
-			position: absolute;
-			border: solid 1px rgba(255, 255, 255, 0);
-			transition: border 0.3s linear;
-		}
-		.fw_template:hover {
-			border: solid 1px rgba(255, 255, 255, 0.5);
-		}
-		.fw_pixel {
-			width: 4px;
-			height: 4px;
-			background-color: #FFFFFF;
-			margin: auto auto;
-		}
-
-	</style>
+	<title>Holiday Game 2016</title>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/plugins/CSSPlugin.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/easing/EasePack.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenLite.min.js"></script>
 
+	<link rel="stylesheet" type="text/css" href="code/main.css">
+	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">	
+
+	</style>
 </head>
 <body>
-	<div id="container">
-		<div class="fw_template">
-			<div class="fw_pixel"></div>
+	<header>
+		<div id="gameTimerContainer">
+			<div id="gameTimer">
+				<div id="seconds"></div>
+				<div id="milliseconds"></div>
+			</div>
+			<div id="border"></div>
 		</div>
-		<div id="container_fireworks"></div>
-
-		<div id="skyline"></div>
+		<div id="pointsContainer">
+			<div id="points"></div>
+			<div id="border"></div>
+		</div>		
+	</header>
+	
+	<div id="countdownToStartContainer">
+		<div id="countdownToStart"></div>
 	</div>
-	<script>
-	var container_fireworks = document.getElementById("container_fireworks"),
-		fw_template = document.querySelectorAll(".fw_template")[0];
 
-	var tt = TweenLite.to;
+	<div id="container">
+		<div id="game">
+			<div id="characterContainer" class="collision_box">
+				<div id="character"></div>	
+			</div>	
 
-	var fw_count = 0,
-		fw_ammount = 0;
-		
-	function remove_firework(id){
-		container_fireworks.removeChild(id);
-		create_firework();
-	}
-
-	function fw_click_handler(e){
-		TweenLite.killTweensOf(e.target);
-		e.target.removeEventListener("click", fw_click_handler);
-		create_firework();
-		fw_ammount++;
-	}
-
-	function create_firework(){
-		console.log('create');
-		//for ( var i = 0; i <= fw_ammount; i++) {
-			fw_count++;
-			var create_fw = fw_template.cloneNode(true);
-			create_fw.id = "fw_"+fw_count;
-			var create_line_id = fw_count;
-			
-			container_fireworks.appendChild(create_fw);
-			create_fw.style.left = Math.random() * container.clientWidth + "px";
-			tt(create_fw, ((Math.random()*3) + 2), { y: -container.clientHeight, ease: Circ.easeOut, onComplete: function(){ 
-				container_fireworks.removeChild(create_fw);
-				create_firework();
-			}});
-			create_fw.addEventListener("click", fw_click_handler);
-		//}
-	}
-
-	function launch_firework(){
-		create_firework();
-	}
-	function init(){
-		console.log("INITIALIZE");
-		launch_firework();
-
-	}
-	window.onload = init;
-	</script>
+			<div class="itemContainer collision_box">
+				<div class="item"></div>	
+			</div>						
+		</div>
+	</div>
+	
+	<script src="code/game_mechanics-min.js"></script>
 </body>
 </html>
