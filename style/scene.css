@@ -1,0 +1,17 @@
+#skyline_bg, #skyline_fg, #ground {
+	position: absolute;
+	background-size: auto 300px;
+	background-position: 0px bottom;
+	height: 300px;
+	width: 100%;
+	bottom: 0px;
+}
+#skyline_bg {
+	background-image: url("../img/skyline_bg.png");
+}
+#skyline_fg {
+	background-image: url("../img/skyline_fg.png");
+}
+#ground{
+	background-image: url("../img/ground.png");
+}
