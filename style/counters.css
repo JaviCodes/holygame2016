@@ -1,0 +1,29 @@
+#countdownToStartContainer {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.25);
+  margin: 0px auto; }
+  #countdownToStartContainer #countdownToStart {
+    position: absolute;
+    left: 40%;
+    top: 40%;
+    font-family: 'Press Start 2P';
+    font-size: 10em; }
+
+#gameTimerContainer, #pointsContainer {
+  width: 150px;
+  height: 100px;
+  font-family: 'Press Start 2P';
+  font-size: 2em;
+  position: absolute;
+  top: 25px; }
+  #gameTimerContainer div, #pointsContainer div {
+    display: inline-block; }
+
+#pointsContainer {
+  left: 25px; }
+
+#gameTimerContainer {
+  right: 25px;
+  text-align: right; }
