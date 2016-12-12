@@ -1,4 +1,9 @@
+# CodeKit #
+###################
 .sass-cache/
 *.css.map
+*.psd
+
 config.codekit*
 *.DS_Store
+

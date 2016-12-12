@@ -3,14 +3,21 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Holiday Game 2016</title>
 	<title>Holyday 2016</title>
+	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">	
 	<link rel="stylesheet" href="style/main.css">
 	<link rel="stylesheet" href="style/scene.css">
 	<link rel="stylesheet" href="style/fireworks.css">
+	<link rel="stylesheet" href="style/character.css">
+	<link rel="stylesheet" href="style/game.css">
+	<link rel="stylesheet" href="style/counters.css">
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/plugins/CSSPlugin.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/easing/EasePack.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenLite.min.js"></script>
 
+	</style>
 </head>
 <body>
 	<div id="container">
@@ -24,8 +31,31 @@
 		<div id="skyline_bg"></div>
 		<div id="skyline_fg"></div>
 		<div id="ground"></div>
-	</div>
+
+		<div id="countdownToStartContainer">
+			<div id="countdownToStart"></div>
+		</div>
+				
+		<div id="gameTimerContainer">
+			<div id="gameTimer">
+				<div id="seconds">0</div>
+				<div id="milliseconds">0</div>
+			</div>
+		</div>
+
+		<div id="pointsContainer">
+			<div id="points">0</div>
+		</div>	
+
+		<div id="game">
+			<div id="characterContainer" class="collision_box">
+				<div id="character"></div>	
+			</div>					
+		</div>
+
 	<script src="code/scene.js"></script>
 	<script src="code/fireworks.js"></script>
+	<script src="code/game_mechanics.js"></script>
+
 </body>
 </html>
