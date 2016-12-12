@@ -4,13 +4,15 @@
 	background-position: center bottom;
 	height: 350px;
 	width: 100%;
-	bottom: -20px;
+	bottom: 192px;
 }
 
 .itemContainer{
 	position: absolute;
 	top: 0px;
 	left: 1500px;
+	background-image: url("../img/main-gift.png");
+	background-size: 64px;
 }
 
 .collision_box, .item_collision_box{

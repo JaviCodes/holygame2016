@@ -28,7 +28,7 @@ var itemCount = 1;
 
 var itemContainer,
 	item,
-	item_level = [25, 125, 250];
+	item_level = [40, 150, 290];
 	
 ////////////////
 //Randomize
@@ -94,7 +94,7 @@ function characterEnter(){
 
 function jump(){
 	tt( character, 0.25, { y: 25, ease: Power2.easeOut });
-	tt( character, 0.25, { y: 250, ease: Power2.easeIn, delay: 0.25 });
+	tt( character, 0.25, { y: 286, ease: Power2.easeIn, delay: 0.25 });
 }
 
 ////////////////
@@ -118,7 +118,7 @@ function countdown(){
 //Initialize
 ////////////////
 function init(){
-	ts(character, { x: -220, y: 250 });
+	ts(character, { x: -220, y: 286 });
 
 	startGame = setInterval(countdown, 1000);
 }
