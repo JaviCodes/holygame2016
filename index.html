@@ -7,7 +7,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/easing/EasePack.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenLite.min.js"></script>
 
-	<link rel="stylesheet" type="text/css" href="code/main.css">
+	<link rel="stylesheet" type="text/css" href="style/character.css">
+	<link rel="stylesheet" href="style/game.css">
+	<link rel="stylesheet" href="style/counters.css">
 	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">	
 
 	</style>
@@ -20,13 +22,13 @@
 				
 		<div id="gameTimerContainer">
 			<div id="gameTimer">
-				<div id="seconds"></div>
-				<div id="milliseconds"></div>
+				<div id="seconds">0</div>
+				<div id="milliseconds">0</div>
 			</div>
 		</div>
 
 		<div id="pointsContainer">
-			<div id="points"></div>
+			<div id="points">0</div>
 		</div>	
 
 		<div id="game">
@@ -36,6 +38,6 @@
 		</div>
 	</div>
 	
-	<script src="code/game_mechanics-min.js"></script>
+	<script src="code/game_mechanics.js"></script>
 </body>
 </html>
