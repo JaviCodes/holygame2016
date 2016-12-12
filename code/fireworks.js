@@ -35,4 +35,4 @@ function create_firework(){
 	}});	
 }
 
-setInterval(create_firework, 100);
+setInterval(create_firework, 500);

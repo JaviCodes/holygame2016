@@ -27,16 +27,17 @@ var milliseconds = 0,
 var itemCount = 1;
 
 var itemContainer,
-	item;
-
+	item,
+	item_level = [25, 125, 250];
+	
 ////////////////
 //Randomize
 ////////////////
 function randomItemPosition(e){
 	console.log('random position');
-	var randY = Math.floor(Math.random() * (10 - 550) + 550);
+	var randY = item_level[Math.floor(Math.random() * 3)];
 	ts(e, { y: randY });
-	tt( e, 4, { x: -2000, delay: 0.15});
+	tt(e, 4, { x: -2000, delay: 0.15});
 	console.log(randY);
 }
 
@@ -53,31 +54,33 @@ function createRandomItem(){
 
 	randomItemPosition(itemContainer);
 	itemCount++;
-
-	milliseconds += 1;
-	gameMilliseconds.innerHTML = milliseconds;
-	if( milliseconds >= 9){
-		milliseconds = 0;
-	}
 }
 
 ////////////////
 //Timers
 ////////////////
 function gameTimer(){
-	seconds += 1;
+	
 	if ( seconds === 10 ){
 		clearInterval(gameTime);
 		clearInterval(createItemTimer);
 		gameMilliseconds.innerHTML = 0;
+		return;
+	}
+
+	milliseconds += 1;
+	gameMilliseconds.innerHTML = milliseconds;
+	if( milliseconds >= 9){
+		milliseconds = 0;
+		seconds += 1;
 	}
 
 	gameSeconds.innerHTML = seconds;
 }
 
 function startTimer(){
-	gameTime = setInterval( gameTimer, 1000 );
-	createItemTimer = setInterval(createRandomItem, 100);
+	gameTime = setInterval( gameTimer, 100 );
+	createItemTimer = setInterval(createRandomItem, 500);
 }
 
 ////////////////
@@ -90,8 +93,8 @@ function characterEnter(){
 }
 
 function jump(){
-	tt( character, 0.25, { y: 25, ease: Power2.easeIn });
-	tt( character, 0.15, { y: 250, ease: Power2.easeIn, delay: 0.25 });
+	tt( character, 0.25, { y: 25, ease: Power2.easeOut });
+	tt( character, 0.25, { y: 250, ease: Power2.easeIn, delay: 0.25 });
 }
 
 ////////////////
