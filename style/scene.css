@@ -1,11 +1,11 @@
 #skyline_bg, #skyline_fg, #ground {
 	position: absolute;
-	background-size: auto 300px;
+	background-size: auto 384px;
 	background-position: 0px bottom;
 	background-repeat-y: none; 
-	height: 300px;
+	height: 384px;
 	width: 100%;
-	bottom: 192px;
+	bottom: 0px;
 }
 #skyline_bg {
 	background-image: url("../img/skyline_bg.png");
@@ -15,7 +15,4 @@
 }
 #ground{
 	background-image: url("../img/ground.png");
-	background-size: 96px;
-	height: 192px;
-	bottom: 0px;
 }

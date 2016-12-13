@@ -5,7 +5,9 @@ html, body, * {
 
 #container {
 	width: 100%;
+	min-width: 512px;
 	height: 100vh;
+	min-height: 384px;
 	margin: 0px auto;
 	background: -webkit-linear-gradient(#000a26, #794283);
   background: -o-linear-gradient(#000a26, #794283);
