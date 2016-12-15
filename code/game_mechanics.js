@@ -3,7 +3,8 @@
 ////////////////
 //Variables
 ////////////////
-var game = document.getElementById("game");
+var container = document.getElementById("container"),
+	game = document.getElementById("game");
 
 var countdownToStart = document.getElementById('countdownToStart'),
 	countdownToStartContainer = document.getElementById('countdownToStartContainer'),
@@ -110,6 +111,7 @@ function countdown(){
 		tt([countdownToStart, countdownToStartContainer], 0, { autoAlpha: 0 });
 		characterEnter();
 		window.addEventListener( "keydown", jump );
+		container.addEventListener("touchstart", jump);
 	}
 }
 
