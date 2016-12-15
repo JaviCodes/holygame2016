@@ -16,3 +16,12 @@
 #ground{
 	background-image: url("../img/ground.png");
 }
+#moon {
+	position: absolute;
+	top: 65px;
+	right: 65px;
+	width: 68px;
+	height: 68px;
+	background-image: url("../img/sky-moon.png");
+	background-size: 68px;
+}

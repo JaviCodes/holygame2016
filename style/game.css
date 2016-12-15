@@ -16,5 +16,4 @@
 .collision_box, .item_collision_box {
   width: 60px;
   height: 60px;
-  border: solid black 1px;
   text-align: center; }
