@@ -8,7 +8,8 @@ var container = document.getElementById("container"),
 
 var countdownToStart = document.getElementById('countdownToStart'),
 	countdownToStartContainer = document.getElementById('countdownToStartContainer'),
-	character = document.getElementById('characterContainer');
+	characterContainer = document.getElementById('characterContainer'),
+	character = document.getElementById("character");
 
 var gameSeconds = document.getElementById('seconds'),
 	gameMilliseconds = document.getElementById('milliseconds');
@@ -88,15 +89,21 @@ function startTimer(){
 //Animations
 ////////////////
 function characterEnter(){
-	tt( character, 0.5, { x: 300, ease: Power2.easeIn, delay: 0.5 });
+	tt( characterContainer, 0.5, { x: ((container.clientWidth/2) - 64), ease: Power2.easeIn, delay: 0.5 });
 	
 	TweenLite.delayedCall( 1.5, startTimer );
 }
 
 function jump(){
-	tt( character, 0.25, { y: 230, ease: Power2.easeOut });
-	tt( character, 0.25, { y: 358, ease: Power2.easeIn, delay: 0.25 });
+	tt( characterContainer, 0.25, { y: 230, ease: Power2.easeOut });
+	tt( characterContainer, 0.25, { y: 358, ease: Power2.easeIn, delay: 0.25 });
 }
+
+//Move chartacter on resize amnd orientation change
+function character_position(){
+	tt(characterContainer, 0.3, { x: (container.clientWidth/2 - 64) });
+}
+window.addEventListener("resize", character_position);
 
 ////////////////
 //Game Start
@@ -115,12 +122,11 @@ function countdown(){
 	}
 }
 
-
 ////////////////
 //Initialize
 ////////////////
 function init(){
-	ts(character, { x: -220, y: 358 });
+	ts(characterContainer, { x: -(container.clientWidth/2 - 64), y: 358 });
 
 	startGame = setInterval(countdown, 1000);
 }
