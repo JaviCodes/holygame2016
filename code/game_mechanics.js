@@ -31,19 +31,31 @@ var itemCount = 1;
 var itemContainer,
 	item,
 	item_level = [230, 294, 358];
+
+var game_sequence = true;
+
+//character position 
+var character_left, character_top;
+var gif_left, gift_top;
+
+var items = [];
+
+var score = 0;
 	
 ////////////////
 //Randomize
 ////////////////
 function randomItemPosition(e){
-	console.log('random position');
+	// console.log('random position');
 	var randY = item_level[Math.floor(Math.random() * 3)];
 	ts(e, { y: randY });
 	tt(e, 4, { x: -2000, delay: 0.15});
-	console.log(randY);
+	// console.log(randY);
 }
 
 function createRandomItem(){
+	var item_position;
+
 	itemContainer = document.createElement('div');
 	itemContainer.className = "itemContainer";
 	itemContainer.classList.add("item_collision_box");
@@ -56,6 +68,43 @@ function createRandomItem(){
 
 	randomItemPosition(itemContainer);
 	itemCount++;
+}
+
+////////////////
+//Collision Detection
+////////////////
+
+function get_character_position(){
+	var char_position = character.getBoundingClientRect();
+
+		character_left = Math.round(char_position.left);
+		character_top = Math.round(char_position.top);
+
+		// console.log( "Character Left " + character_left );
+		// console.log( "Character Top " + character_top );
+}
+
+function get_item_positions(){
+	if( container.querySelectorAll('.itemContainer') ){
+		var gifts = container.querySelectorAll('.itemContainer');
+		var gift_position, gift_left, gift_top;
+
+			for(var i = 0; i < gifts.length; i++){
+				gift_position = gifts[i].getBoundingClientRect();
+				
+				gift_left = Math.round(gift_position.left);
+				gift_top = Math.round(gift_position.top);
+				
+				// console.log(gift_left);
+
+				console.log ( character_left - gift_left );
+
+				if( (character_top - gift_top) <= 5 && (character_left - gift_left) <= 5 ){
+					score++;
+					console.log("SCOOOOOOOOOORE!!!!!!!!!!! " + score);
+				}
+			}
+	}
 }
 
 ////////////////
@@ -89,7 +138,7 @@ function startTimer(){
 //Animations
 ////////////////
 function characterEnter(){
-	tt( characterContainer, 0.5, { x: ((container.clientWidth/2) - 64), ease: Power2.easeIn, delay: 0.5 });
+	tt( characterContainer, 1, { x: ((container.clientWidth/2) - 64), ease: Power2.easeIn, delay: 0.5 });
 	
 	TweenLite.delayedCall( 1.5, startTimer );
 }
@@ -115,10 +164,15 @@ function countdown(){
 		countToGame--;
 	}else{
 		clearInterval(startGame);
+		
 		tt([countdownToStart, countdownToStartContainer], 0, { autoAlpha: 0 });
 		characterEnter();
+		
 		window.addEventListener( "keydown", jump );
 		container.addEventListener("touchstart", jump);
+
+		setInterval( get_character_position,  100);
+		setInterval( get_item_positions,  100);
 	}
 }
 
