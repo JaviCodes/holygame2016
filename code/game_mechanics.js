@@ -4,7 +4,8 @@
 //Variables
 ////////////////
 var container = document.getElementById("container"),
-	game = document.getElementById("game");
+	game = document.getElementById("game"),
+	points = document.getElementById('points');
 
 var countdownToStart = document.getElementById('countdownToStart'),
 	countdownToStartContainer = document.getElementById('countdownToStartContainer'),
@@ -79,9 +80,6 @@ function get_character_position(){
 
 		character_left = Math.round(char_position.left);
 		character_top = Math.round(char_position.top);
-
-		// console.log( "Character Left " + character_left );
-		// console.log( "Character Top " + character_top );
 }
 
 function get_item_positions(){
@@ -94,14 +92,13 @@ function get_item_positions(){
 				
 				gift_left = Math.round(gift_position.left);
 				gift_top = Math.round(gift_position.top);
-				
-				// console.log(gift_left);
 
-				console.log ( character_left - gift_left );
-
-				if( (character_top - gift_top) <= 5 && (character_left - gift_left) <= 5 ){
+				if( ( gift_left - character_left ) >= 0 && ( gift_left - character_left ) <= 5  ){
 					score++;
-					console.log("SCOOOOOOOOOORE!!!!!!!!!!! " + score);
+					points.innerHTML = score;
+
+					game.removeChild(gifts[i]);
+					console.log("SCORE: " + score);
 				}
 			}
 	}
@@ -132,6 +129,7 @@ function gameTimer(){
 function startTimer(){
 	gameTime = setInterval( gameTimer, 100 );
 	createItemTimer = setInterval(createRandomItem, 500);
+	// createRandomItem();
 }
 
 ////////////////
@@ -155,6 +153,22 @@ function character_position(){
 window.addEventListener("resize", character_position);
 
 ////////////////
+//In Game Mechanics
+////////////////
+function inGame(){
+	clearInterval(startGame);
+	
+	tt([countdownToStart, countdownToStartContainer], 0, { autoAlpha: 0 });
+	characterEnter();
+	
+	window.addEventListener( "keydown", jump );
+	container.addEventListener("touchstart", jump);
+
+	setInterval( get_character_position,  10);
+	setInterval( get_item_positions,  10);
+}
+
+////////////////
 //Game Start
 ////////////////
 function countdown(){
@@ -163,16 +177,7 @@ function countdown(){
 		countdownToStart.innerHTML = countToGame;
 		countToGame--;
 	}else{
-		clearInterval(startGame);
-		
-		tt([countdownToStart, countdownToStartContainer], 0, { autoAlpha: 0 });
-		characterEnter();
-		
-		window.addEventListener( "keydown", jump );
-		container.addEventListener("touchstart", jump);
-
-		setInterval( get_character_position,  100);
-		setInterval( get_item_positions,  100);
+		inGame();
 	}
 }
 
