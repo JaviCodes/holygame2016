@@ -1,4 +1,4 @@
-/* globals console, TweenLite, Power2 */
+/* globals console, TweenLite, Power2, Circ */
 
 ////////////////
 //Variables
@@ -23,9 +23,8 @@ var startGame,
 	gameTime,
 	createItemTimer;
 
-var milliseconds = 0,
-	seconds = 0;
-	//d = new Date(); // will be a more accurate way to display seconds and milliseconds than setInterval
+var milliseconds = 00,
+	seconds = 20;
 
 var itemCount = 1;
 
@@ -51,11 +50,9 @@ var fw_count = 0,
 //Randomize
 ////////////////
 function randomItemPosition(e){
-	// console.log('random position');
 	var randY = item_level[Math.floor(Math.random() * 3)];
 	ts(e, { y: randY });
 	tt(e, 4, { x: -2000, delay: 0.15});
-	// console.log(randY);
 }
 
 function createRandomItem(){
@@ -142,18 +139,18 @@ function get_item_positions(){
 ////////////////
 function gameTimer(){
 	
-	if ( seconds === 10 ){
+	if ( seconds <= 0 ){
 		clearInterval(gameTime);
 		clearInterval(createItemTimer);
 		gameMilliseconds.innerHTML = 0;
 		return;
 	}
 
-	milliseconds += 1;
+	milliseconds -= 1;
 	gameMilliseconds.innerHTML = milliseconds;
-	if( milliseconds >= 9){
-		milliseconds = 0;
-		seconds += 1;
+	if( milliseconds <= 0){
+		milliseconds = 9;
+		seconds -= 1;
 	}
 
 	gameSeconds.innerHTML = seconds;
@@ -161,7 +158,7 @@ function gameTimer(){
 
 function startTimer(){
 	gameTime = setInterval( gameTimer, 100 );
-	createItemTimer = setInterval(createRandomItem, 500);
+	createItemTimer = setInterval(createRandomItem, 300);
 }
 
 ////////////////
@@ -182,7 +179,6 @@ function jump(){
 function character_position(){
 	tt(characterContainer, 0.3, { x: (container.clientWidth/2 - 64) });
 }
-window.addEventListener("resize", character_position);
 
 ////////////////
 //In Game Mechanics
@@ -222,6 +218,7 @@ function init(){
 	startGame = setInterval(countdown, 1000);
 }
 
+window.addEventListener("resize", character_position); 
 window.onload = function(){
 	init();
 };
