@@ -178,6 +178,8 @@ function jump(){
 //Move chartacter on resize amnd orientation change
 function character_position(){
 	tt(characterContainer, 0.3, { x: (container.clientWidth/2 - 64) });
+	ts(countdownToStart, { x:(container.clientWidth / 2) - (countdownToStart.clientWidth / 2)  });
+	ts(countdownToStart, { y:(container.clientHeight / 2) - (countdownToStart.clientHeight / 2)  });
 }
 
 ////////////////
@@ -205,7 +207,7 @@ function countdown(){
 		countdownToStart.innerHTML = countToGame;
 		countToGame--;
 	}else{
-		inGame();
+		//inGame();
 	}
 }
 
@@ -214,6 +216,8 @@ function countdown(){
 ////////////////
 function init(){
 	ts(characterContainer, { x: -(container.clientWidth/2 - 64), y: 358 });
+	ts(countdownToStart, { x:(container.clientWidth / 2) - (countdownToStart.clientWidth / 2)  });
+	ts(countdownToStart, { y:(container.clientHeight / 2) - (countdownToStart.clientHeight / 2)  });
 
 	startGame = setInterval(countdown, 1000);
 }
