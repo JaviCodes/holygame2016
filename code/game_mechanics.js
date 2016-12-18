@@ -6,7 +6,7 @@
 var container = document.getElementById("container"),
 	game = document.getElementById("game"),
 	points = document.getElementById('points'),
-	button_start = document.getElementById('button_start').
+	button_start = document.getElementById('button_start'),
 	container_message = document.getElementById("container_message");
 
 var countdownToStart = document.getElementById('countdownToStart'),
@@ -169,8 +169,11 @@ function characterEnter(){
 }
 
 function jump(){
-	tt( characterContainer, 0.25, { y: 230, ease: Power2.easeOut });
-	tt( characterContainer, 0.25, { y: 358, ease: Power2.easeIn, delay: 0.25 });
+	character.className = "jump";
+	tt( characterContainer, 0.25, { y: 230, ease: Power2.easeOut, delay: 0 });
+	tt( characterContainer, 0.25, { y: 358, ease: Power2.easeIn, delay: 0.25, onComplete: function(){
+		character.className = "";
+	} });
 }
 
 //Move chartacter on resize amnd orientation change

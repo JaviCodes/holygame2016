@@ -4,6 +4,8 @@
   margin: 0 auto;
   background-image: url("../img/main-character--run.gif");
   background-size: 64px; }
+  #character.jump {
+    background-image: url("../img/main-character--jump.gif"); }
 
 .item {
   position: absolute;
