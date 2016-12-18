@@ -207,7 +207,7 @@ function countdown(){
 		countdownToStart.innerHTML = countToGame;
 		countToGame--;
 	}else{
-		//inGame();
+		inGame();
 	}
 }
 
