@@ -5,7 +5,9 @@
 ////////////////
 var container = document.getElementById("container"),
 	game = document.getElementById("game"),
-	points = document.getElementById('points');
+	points = document.getElementById('points'),
+	button_start = document.getElementById('button_start').
+	container_message = document.getElementById("container_message");
 
 var countdownToStart = document.getElementById('countdownToStart'),
 	countdownToStartContainer = document.getElementById('countdownToStartContainer'),
@@ -32,18 +34,14 @@ var itemContainer,
 	item,
 	item_level = [230, 294, 358];
 
-var game_sequence = true;
-
 //character position 
 var character_left, character_top;
-var gif_left, gift_top;
-
-var items = [];
 
 var score = 0;
 
 var fw_count = 0,
 	fw_colors = ["26deff", "27fe27", "ef3039"],
+	container_fireworks = document.getElementById("container_fireworks"),
 	fw_template = document.querySelectorAll(".fw_template")[0];
 	
 ////////////////
@@ -56,7 +54,6 @@ function randomItemPosition(e){
 }
 
 function createRandomItem(){
-	var item_position;
 
 	itemContainer = document.createElement('div');
 	itemContainer.className = "itemContainer";
@@ -212,18 +209,18 @@ function countdown(){
 	}
 }
 
+function game_start(){
+	tt(container_message, 0.4, { autoAlpha: 0 });
+	character_position();
+	startGame = setInterval(countdown, 1000);
+}
 ////////////////
 //Initialize
 ////////////////
 function init(){
-	ts(characterContainer, { x: -(container.clientWidth/2 - 64), y: 358 });
-	ts(countdownToStart, { x:(container.clientWidth / 2) - (countdownToStart.clientWidth / 2)  });
-	ts(countdownToStart, { y:(container.clientHeight / 2) - (countdownToStart.clientHeight / 2)  });
-
-	startGame = setInterval(countdown, 1000);
+	ts(characterContainer, { x: container.clientWidth/2 - 104, y: 358 });
 }
 
 window.addEventListener("resize", character_position); 
-window.onload = function(){
-	init();
-};
+window.onload = init;
+button_start.addEventListener("click", game_start);
