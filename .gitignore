@@ -4,6 +4,8 @@
 *.css.map
 *.psd
 
+code/min*
+css/*
 config.codekit*
 *.DS_Store
 
