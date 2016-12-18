@@ -6,6 +6,7 @@
 
 code/min*
 css/*
+*-min.css*
 config.codekit*
 *.DS_Store
 

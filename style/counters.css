@@ -19,8 +19,7 @@
   font-family: 'Press Start 2P';
   font-size: 18px;
   color: #FFFFFF;
-  position: absolute;
-  top: 25px; }
+  position: absolute; }
   #gameTimerContainer div, #pointsContainer div {
     display: inline-block; }
 
