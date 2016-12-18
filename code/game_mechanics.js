@@ -23,7 +23,7 @@ var startGame,
 	gameTime,
 	createItemTimer;
 
-var milliseconds = 00,
+var milliseconds =    0,
 	seconds = 20;
 
 var itemCount = 1;
@@ -89,8 +89,9 @@ function create_firework(){
 	
 	container_fireworks.appendChild(create_fw);
 	create_fw.style.left = Math.random() * container.clientWidth + "px";
-	tt(create_fw, ((Math.random()*3)), { y: -y_random, scale: ((Math.random()*3)+1 ), ease: Circ.easeOut, onComplete: function(){ 
+	tt(create_fw, ((Math.random()*3)), { x: -10, y: -y_random, scale: ((Math.random()*3)+1 ), ease: Circ.easeOut, onComplete: function(){ 
 
+		tt(fw_img, 2, { x: -5 });
 		ts(fw_img, { display : "block" });
 		fw_img.src = "img/firework_"+fw_color+".gif?"+Math.random();
 		tt(fw_pixel, 0.1, { autoAlpha: 0 });
