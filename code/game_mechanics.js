@@ -1,4 +1,4 @@
-/* globals console, TweenLite, Power2, Circ */
+/* globals console, TweenLite, Linear, Power2, Circ */
 
 ////////////////
 //Variables
@@ -7,7 +7,9 @@ var container = document.getElementById("container"),
 	game = document.getElementById("game"),
 	points = document.getElementById('points'),
 	button_start = document.getElementById('button_start'),
-	container_message = document.getElementById("container_message");
+	container_message = document.getElementById("container_message"),
+	copy_top = document.getElementById("copy_top"),
+	copy_bottom = document.getElementById("copy_bottom");
 
 var countdownToStart = document.getElementById('countdownToStart'),
 	countdownToStartContainer = document.getElementById('countdownToStartContainer'),
@@ -25,7 +27,7 @@ var startGame,
 	gameTime,
 	createItemTimer;
 
-var milliseconds =    0,
+var milliseconds = 0,
 	seconds = 20;
 
 var itemCount = 1;
@@ -43,6 +45,14 @@ var fw_count = 0,
 	fw_colors = ["26deff", "27fe27", "ef3039"],
 	container_fireworks = document.getElementById("container_fireworks"),
 	fw_template = document.querySelectorAll(".fw_template")[0];
+
+var isEndFrame = false,
+	character_end,
+	end_frame_start,
+	final_score = 0,
+	final_score_up = 0,
+	final_score_down = 0,
+	score_countdown;	
 	
 ////////////////
 //Randomize
@@ -50,7 +60,7 @@ var fw_count = 0,
 function randomItemPosition(e){
 	var randY = item_level[Math.floor(Math.random() * 3)];
 	ts(e, { y: randY });
-	tt(e, 4, { x: -2000, delay: 0.15});
+	tt(e, 1.5, { x: -(container.clientWidth + itemContainer.clientWidth), delay: 0.15, ease: Linear.easeNone});
 }
 
 function createRandomItem(){
@@ -87,13 +97,15 @@ function create_firework(){
 	container_fireworks.appendChild(create_fw);
 	create_fw.style.left = Math.random() * container.clientWidth + "px";
 	tt(create_fw, ((Math.random()*3)), { x: -10, y: -y_random, scale: ((Math.random()*3)+1 ), ease: Circ.easeOut, onComplete: function(){ 
-
 		tt(fw_img, 2, { x: -5 });
 		ts(fw_img, { display : "block" });
 		fw_img.src = "img/firework_"+fw_color+".gif?"+Math.random();
 		tt(fw_pixel, 0.1, { autoAlpha: 0 });
 		tt(create_fw, 0.4, { autoAlpha: 0, delay: 1, onComplete: function(){ 
 			container_fireworks.removeChild(create_fw);
+			if ( isEndFrame ){
+				create_firework();
+			}
 		}});
 	}});	
 }
@@ -120,16 +132,55 @@ function get_item_positions(){
 				gift_left = Math.round(gift_position.left);
 				gift_top = Math.round(gift_position.top);
 
-				if( ( gift_left - character_left ) >= 0 && ( gift_left - character_left ) <= 5  ){
-					score++;
-					points.innerHTML = score;
+				if( gift_left >= character_left && gift_left <= (character_left + 64) ){
+					if ( gift_top >= character_top && gift_top <= (character_top + 64 )) {
+						score++;
+						points.innerHTML = score;
 
-					game.removeChild(gifts[i]);
-					create_firework();
-					console.log("SCORE: " + score);
+						game.removeChild(gifts[i]);
+						create_firework();
+						console.log("SCORE: " + score);
+					}
 				}
 			}
 	}
+}
+
+//+++++++++++++++++++++++++++
+// END SCENE 
+//+++++++++++++++++++++++++++
+function score_reverse(){
+	if( final_score < score ){
+		score -= 1;
+		final_score_up += 1;
+		final_score_down = score;
+		create_firework();
+
+		copy_bottom.innerHTML = final_score_up;
+		points.innerHTML = final_score_down;
+	} else {
+		clearInterval(score_countdown);
+	}
+}
+
+function jump_end(){
+	character.className = "jump";
+	tt( characterContainer, 0.5, { y: 310, ease: Power2.easeOut, delay: 0 });
+	tt( characterContainer, 0.5, { y: 358, ease: Power2.easeIn, delay: 0.50, onComplete: function(){
+		character.className = "";
+	} });
+}
+
+function end_frame_start(){
+	isEndFrame = true;
+	copy_top.style.display = "none";
+	button_start.style.display = "none";
+
+	copy_bottom.innerHTML = 0;
+	score_countdown = setInterval(score_reverse, 2000/score);
+
+	tt(container_message, 0.4, { autoAlpha: 1 });
+	character_end = setInterval( jump_end, 1000 );
 }
 
 ////////////////
@@ -140,6 +191,7 @@ function gameTimer(){
 	if ( seconds <= 0 ){
 		clearInterval(gameTime);
 		clearInterval(createItemTimer);
+		setTimeout(end_frame_start, 3000);
 		gameMilliseconds.innerHTML = 0;
 		return;
 	}
@@ -170,7 +222,7 @@ function characterEnter(){
 
 function jump(){
 	character.className = "jump";
-	tt( characterContainer, 0.25, { y: 230, ease: Power2.easeOut, delay: 0 });
+	tt( characterContainer, 0.25, { y: 200, ease: Power2.easeOut, delay: 0 });
 	tt( characterContainer, 0.25, { y: 358, ease: Power2.easeIn, delay: 0.25, onComplete: function(){
 		character.className = "";
 	} });
