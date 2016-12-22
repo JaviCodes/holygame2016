@@ -22,6 +22,10 @@
   position: absolute; }
   #gameTimerContainer div, #pointsContainer div {
     display: inline-block; }
+  #gameTimerContainer .label, #pointsContainer .label {
+    margin-top: 5px;
+    display: block;
+    font-size: 11px; }
 
 #pointsContainer {
   background-image: url("../img/main-gift.png");
@@ -30,16 +34,24 @@
   background-repeat: no-repeat;
   padding-left: 45px;
   padding-top: 20px;
-  top: 20px;
+  top: 15px;
   height: 20px; }
+  #pointsContainer #score_final {
+    padding: 20px 0px;
+    font-size: 55px;
+    text-shadow: 5px 5px 0px #000000;
+    opacity: 0;
+    margin-left: -40px; }
 
 #milliseconds {
   margin-left: -20px; }
+  #milliseconds::before {
+    content: "0"; }
 
 #pointsContainer {
   left: 35px; }
 
 #gameTimerContainer {
   right: 35px;
-  top: 40px;
+  top: 35px;
   text-align: right; }

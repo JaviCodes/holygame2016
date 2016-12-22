@@ -30,7 +30,7 @@
 	position: absolute;
 	right: 0px;
 	top: 80px;
-	width: 60%;
+	width: 50%;
 	height: 70%;
 	padding-right: 35px;
 	text-align: center;
@@ -47,7 +47,7 @@
 
 #copy_bottom {
 	padding: 20px 0px;
-	font-size: 65px;
+	font-size: 50px;
 	text-shadow: 5px 5px 0px #000000;
 }
 
@@ -59,4 +59,18 @@
 
 #button_start div {
 	display: inline-block;
+}
+
+#button_sound {
+	position: relative;
+	width: 100px;
+	margin: 0px auto; 
+	text-align: center;
+	font-family: 'Press Start 2P';
+	color: #FFFFFF; 
+	font-size: 16px;
+	padding: 35px 15px;
+	user-select: none;
+	cursor: pointer;
+
 }

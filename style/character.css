@@ -6,6 +6,8 @@
   background-size: 64px; }
   #character.jump {
     background-image: url("../img/main-character--jump.gif"); }
+  #character.stand {
+    background-image: url("../img/main-character--stand.gif"); }
 
 .item {
   position: absolute;
