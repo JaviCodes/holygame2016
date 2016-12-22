@@ -17,10 +17,28 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/plugins/CSSPlugin.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/easing/EasePack.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenLite.min.js"></script>
+	<!-- <script src="code/min//CSSPlugin.min.js"></script>
+	<script src="code/min//EasePack.min.js"></script>
+	<script src="code/min/TweenLite.min.js"></script> -->
 
 	</style>
 </head>
 <body>
+	<audio id="sound_bg" >
+		<source src="sound/sound_bg.ogg" type="audio/ogg">
+	</audio>
+	<audio id="sound_collect" >
+		<source src="sound/collect.ogg" type="audio/ogg">
+	</audio>
+	<audio id="sound_countdown" >
+		<source src="sound/countdown.ogg" type="audio/ogg">
+	</audio>
+	<audio id="sound_win" >
+		<source src="sound/win.ogg" type="audio/ogg">
+	</audio>
+	<audio id="sound_jump" >
+		<source src="sound/jump.ogg" type="audio/ogg">
+	</audio>
 	<div id="container">
 		<div class="fw_template">
 			<div class="fw_pixel"></div>
@@ -43,19 +61,23 @@
 				<div id="seconds">20</div>:
 				<div id="milliseconds">0</div>
 			</div>
+			<div class="label">time</div>
 		</div>
 
 		<div id="pointsContainer">
 			<div id="points_pre">X</div>
 			<div id="points">0</div>
-		</div>	
+			<div class="label">score</div>
+			<div id="score_final"></div>
+		</div>
 
 		<div id="game">
 			<div id="characterContainer" class="collision_box">
-				<div id="character">
+				<div id="character" class="stand">
 				</div>	
 			</div>					
 		</div>
+
 		<div id="container_message">
 			<div id="copy_top">Happy Holidays &amp; <br > Happy New Year </div>
 			<div id="copy_bottom">2017</div>
@@ -67,7 +89,9 @@
 			</div>
 		</div>
 
+
 	</div>
+	<div id="button_sound">sound</div>
 
 	<script src="code/scene.js"></script>
 	<script src="code/game_mechanics.js"></script>
